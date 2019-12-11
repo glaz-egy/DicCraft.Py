@@ -1,0 +1,16 @@
+{  
+    "servers":{
+        "main": {
+            "servername": "Main server",
+            "serverfile": "server.jar",
+            "serverdir": "/home/server/",
+            "rconconfig": ["127.0.0.1", 25567, "password"]
+        }
+    },
+    "botconfig":{
+        "_comment": "token is botttoken:string, botadmin is botadmin id:integer, prefix is bot prefix:string",
+        "token": "bottoken",
+        "botadmin": null,
+        "prefix": ";"
+    }
+}

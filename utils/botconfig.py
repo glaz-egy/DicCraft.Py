@@ -3,17 +3,20 @@
 import configparser
 
 class botConfig:
-    def __init__(self, configFile):
-        self.__config = configparser.ConfigParser()
-        self.__config.read(configFile)
-        self.__serverdir = self.__config['bot']['serverdir']
-        self.__bottoken = self.__config['bot']['token']
+    def __init__(self, conf):
+        self.conf = conf
+        self.__bottoken = self.conf['token']
+        self.__botadmin = self.conf['botadmin']
+        self.__prefix = self.conf['prefix']
 
-    @property
-    def serverdir(self):
-        return self.__serverdir
-    
     @property
     def bottoken(self):
         return self.__bottoken
+
+    @property
+    def prefix(self):
+        return self.__prefix
     
+    @property
+    def botadmin(self):
+        return self.__botadmin
