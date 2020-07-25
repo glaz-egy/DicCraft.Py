@@ -33,7 +33,7 @@ class Minecraft(commands.Cog):
         self.botConf = botConf
     
     @commands.command()
-    async def check(self, ctx, *args):
+    async def state(self, ctx, *args):
         """マイクラサーバの状況を取得します"""
         if args is ():
             s = ''
@@ -56,7 +56,7 @@ class Minecraft(commands.Cog):
             await ctx.send("引数が必要になります")
         elif args[0] in list(self.servers.keys()):
             if not await ServerConnect(self.servers[args[0]]['rconconfig'], None, check=True):
-                Popen("screen -AmdS {} java -XX:+AggressiveOpts -Xmx6G -Xms6G -jar {}".format(args[0], self.servers[args[0]]['serverfile']), shell=True, cwd=self.servers[args[0]]['serverdir'])
+                bootServer(args[0], self.servers)
                 time.sleep(1)
                 await ctx.send("{}を起動しました".format(self.servers[args[0]]['servername']))
             else:
@@ -94,7 +94,7 @@ class Minecraft(commands.Cog):
                     await ServerConnect(self.servers[args[0]]['rconconfig'], 'stop')
                     print('reboot shutdown process end')
                     time.sleep(5)
-                    Popen("screen -AmdS {} java -XX:+AggressiveOpts -Xmx6G -Xms6G -jar {}".format(args[0], self.servers[args[0]]['serverfile']), shell=True, cwd=self.servers[args[0]]['serverdir'])
+                    bootServer(args[0], self.servers)
                     time.sleep(1)
                     await ctx.send("サーバを再起動しました")
                     print('reboot boot process end')
@@ -156,6 +156,7 @@ class Minecraft(commands.Cog):
     
     @commands.command()
     async def serverlist(self, ctx):
+        """サーバをリストで表示します"""
         ss = ''
         for s in self.servers.keys():
             ss += s+'\n'

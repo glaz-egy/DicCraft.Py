@@ -3,8 +3,11 @@
         "main": {
             "servername": "Main server",
             "serverfile": "server.jar",
+            "minMemory" : 1,
+            "maxMemory" : 1,
             "serverdir": "/home/server/",
-            "rconconfig": ["127.0.0.1", 25567, "password"]
+            "rconconfig": ["127.0.0.1", 25567, "password"],
+            "isNoGUI" : true
         }
     },
     "botconfig":{
